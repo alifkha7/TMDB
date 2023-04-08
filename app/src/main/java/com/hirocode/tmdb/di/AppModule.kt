@@ -1,5 +1,6 @@
 package com.hirocode.tmdb.di
 
+import com.hirocode.tmdb.MainViewModel
 import com.hirocode.tmdb.data.repository.MoviesRepositoryImpl
 import com.hirocode.tmdb.data.source.MoviesDataSource
 import com.hirocode.tmdb.data.source.MoviesDataSourceImpl
@@ -8,6 +9,7 @@ import com.hirocode.tmdb.domain.repository.MoviesRepository
 import com.hirocode.tmdb.domain.usecase.GetPopularUseCase
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -38,4 +40,8 @@ val repositoryModule = module {
 
 val useCaseModule = module {
     factory { GetPopularUseCase(get()) }
+}
+
+val viewModelModule = module {
+    viewModel { MainViewModel(get()) }
 }
