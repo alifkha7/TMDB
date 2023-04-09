@@ -47,7 +47,7 @@ fun MainScreen(
             LoadingScreen(modifier)
         }
         is MainState.Error -> {
-            val error = (mainState as MainState.Error)
+            val error = (mainState as MainState.Error).message
             ErrorScreen(error, modifier)
         }
         is MainState.Success -> {
@@ -69,7 +69,7 @@ fun LoadingScreen(modifier: Modifier) {
 
 @Composable
 fun ErrorScreen(
-    error: MainState.Error,
+    error: String,
     modifier: Modifier
 ) {
     Box(
@@ -78,7 +78,7 @@ fun ErrorScreen(
             .padding(16.dp)
             .fillMaxSize()
     ) {
-        Text(error.toString())
+        Text(error)
     }
 }
 
